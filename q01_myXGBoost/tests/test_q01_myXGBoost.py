@@ -39,8 +39,8 @@ class TestMyXGBoost(TestCase):
                                   type(best_params)))
 
         # Return value tests
-        expected_best_params = {'subsample': 0.6, 'colsample_bytree': 0.6, 'max_depth': 2, 'min_child_weight': 4}
-        expected_accuracy = 0.791208791209
+        expected_best_params = {'subsample': 0.8, 'colsample_bytree': 0.7, 'max_depth': 2, 'min_child_weight': 4}
+        expected_accuracy = 0.796703296703
 
         self.assertDictEqual(best_params, expected_best_params, "Expected best_params does not match given best_params")
         self.assertAlmostEqual(accuracy, expected_accuracy, 4, "Expected accuracy does not match given accuracy")
