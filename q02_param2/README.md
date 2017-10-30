@@ -1,6 +1,6 @@
 # Let's Continue with Extreme Gradient Boosting  Parameter tuning
 
-* Now we have tunned the first few parameter, now we use them and tune the rest params.
+* Now we have tunned the first few parameter, now by using them we will tune the rest params.
 
 ## Write a function `param2` that:
 * Will take following param_grid along with model, dataset that will use **myXGBoost** and will return the accuracy and best_params.
