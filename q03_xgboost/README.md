@@ -24,4 +24,4 @@
 
 To-Do list :
 
-Check for different n_estimators and learning_rate whether the score are varing and find the best score
+Check for different n_estimators and learning_rate and find the best score
