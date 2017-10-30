@@ -41,7 +41,7 @@ class TestParam2(TestCase):
 
         # Return value tests
 
-        expected_best_params = {'reg_alpha': 0.05, 'reg_lambda': 1.0, 'gamma': 1}
+        expected_best_params = {'reg_alpha': 0, 'reg_lambda': 1.0, 'gamma': 0}
         expected_accuracy = 0.796703296703
 
         self.assertDictEqual(best_params1, expected_best_params, "Expected best_params does not match given best_params")
