@@ -31,5 +31,5 @@ class TestXgboost(TestCase):
 
         # Return value tests
         expected_accuracy = 0.802197802198
-        self.assertAlmostEqual(accuracy, expected_accuracy, 4, "Expected accuracy does not match given accuracy")
+        self.assertAlmostEqual(accuracy, expected_accuracy, 3, "Expected accuracy does not match given accuracy")
 
