@@ -17,12 +17,12 @@ class TestXgboost(TestCase):
 
         # Input parameters tests
         args = getargspec(xgboost)
-        self.assertEqual(len(args[0]), 3, "Expected argument(s) %d, Given %d" % (3, len(args[0])))
+        self.assertEqual(len(args[0]), 4, "Expected argument(s) %d, Given %d" % (4, len(args[0])))
         self.assertEqual(args[3], None, "Expected default values do not match given default values")
 
         # Return data types
 
-        accuracy = xgboost(X_train, X_test, y_train,subsample=0.8,
+        accuracy = xgboost(X_train, X_test, y_train, y_test,subsample=0.8,
               colsample_bytree=0.7, max_depth=2, 
               min_child_weight=4, reg_alpha=0, reg_lambda=1.0,
              gamma=0,n_estimators=100,learning_rate=0.1)
