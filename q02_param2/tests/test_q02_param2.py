@@ -23,13 +23,13 @@ class TestParam2(TestCase):
 
         # Input parameters tests
         args = getargspec(param2)
-        self.assertEqual(len(args[0]), 5, "Expected argument(s) %d, Given %d" % (5, len(args[0])))
+        self.assertEqual(len(args[0]), 6, "Expected argument(s) %d, Given %d" % (6, len(args[0])))
         self.assertEqual(args[3], None, "Expected default values do not match given default values")
 
         # Return data types
 
         xgb = XGBClassifier(seed=9)
-        accuracy1, best_params1 = param2(X_train, X_test, y_train, xgb, param_grid2)
+        accuracy1, best_params1 = param2(X_train, X_test, y_train, y_test, xgb, param_grid2)
 
         self.assertIsInstance(accuracy1, float,
                               "Expected data type for return value is `list`, you are returning %s" % (
