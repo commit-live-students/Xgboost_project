@@ -28,7 +28,7 @@ class TestMyXGBoost(TestCase):
         # Return data types
 
         xgb = XGBClassifier(seed=9)
-        accuracy, best_params = myXGBoost(X_train, X_test, y_train,y_test, xgb, param_grid1, 3)
+        accuracy, best_params = myXGBoost(X_train, X_test, y_train, y_test, xgb, param_grid1, 3)
 
         self.assertIsInstance(accuracy, float,
                               "Expected data type for return value is `list`, you are returning %s" % (
