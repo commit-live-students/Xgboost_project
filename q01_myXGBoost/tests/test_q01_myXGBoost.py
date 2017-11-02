@@ -22,13 +22,13 @@ class TestMyXGBoost(TestCase):
 
         # Input parameters tests
         args = getargspec(myXGBoost)
-        self.assertEqual(len(args[0]), 6, "Expected argument(s) %d, Given %d" % (6, len(args[0])))
+        self.assertEqual(len(args[0]), 7, "Expected argument(s) %d, Given %d" % (7, len(args[0])))
         self.assertEqual(args[3], (3,), "Expected default values do not match given default values")
 
         # Return data types
 
         xgb = XGBClassifier(seed=9)
-        accuracy, best_params = myXGBoost(X_train, X_test, y_train, xgb, param_grid1, 3)
+        accuracy, best_params = myXGBoost(X_train, X_test, y_train, y_test, xgb, param_grid1, 3)
 
         self.assertIsInstance(accuracy, float,
                               "Expected data type for return value is `list`, you are returning %s" % (
