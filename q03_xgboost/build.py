@@ -26,6 +26,6 @@ def xgboost(X_train,X_test,y_train,y_test,**kwargs) :
     predictions = [round(value) for value in y_pred]
     # evaluate predictions
     accuracy = accuracy_score(y_test, predictions)
-    expected_accuracy = np.float(0.79670329670329665)
+    #expected_accuracy = np.float(0.79670329670329665)
 
-    return expected_accuracy
+    return accuracy
