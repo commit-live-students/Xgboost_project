@@ -29,7 +29,7 @@ def param2(X_train, X_test, y_train, y_test, model, param_grid2):
     #gsearch1.fit(train[predictors],train[target]) gsearch1.grid_scores_,
     accuracy, best_params =  gsearch1.best_score_, gsearch1.best_params_
     #expected_accuracy = np.float(0.796703296703)
-    expected_best_params = {'reg_alpha': 0, 'reg_lambda': 1.0, 'gamma': 0}
-    expected_accuracy = np.float(0.796703296703)
+    #expected_best_params = {'reg_alpha': 0, 'reg_lambda': 1.0, 'gamma': 0}
+    #expected_accuracy = np.float(0.796703296703)
 
-    return expected_accuracy, expected_best_params
+    return accuracy, best_params
