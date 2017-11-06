@@ -4,6 +4,7 @@ from xgboost import XGBClassifier
 import pandas as pd
 from greyatomlib.Xgboost_project.q01_myXGBoost.build import myXGBoost
 import numpy as np
+from sklearn.model_selection import GridSearchCV
 
 # load data
 dataset = pd.read_csv('data/loan_clean_data.csv')
