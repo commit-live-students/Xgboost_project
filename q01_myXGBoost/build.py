@@ -1,3 +1,4 @@
+# %load q01_myXGBoost/build.py
 import pandas as pd
 from xgboost import XGBClassifier
 from sklearn.model_selection import train_test_split
@@ -10,6 +11,7 @@ dataset = pd.read_csv('data/loan_clean_data.csv')
 X = dataset.iloc[:, :-1]
 y = dataset.iloc[:, -1]
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=9)
+model=XGBClassifier(seed=9)
 
 param_grid1 = {"max_depth": [2, 3, 4, 5, 6, 7, 9, 11],
                "min_child_weight": [4, 6, 7, 8],
@@ -20,6 +22,19 @@ param_grid1 = {"max_depth": [2, 3, 4, 5, 6, 7, 9, 11],
 
 # Write your solution here :
 
+def myXGBoost(X_train, X_test, y_train, y_test,model,param_grid,Kfold=3):
+    #acc_scorer = make_scorer(accuracy_score)
+    grid_obj = GridSearchCV(model, param_grid1,cv=Kfold)
+    grid_obj.fit(X_train,y_train)
+    bestParam= grid_obj.best_params_
+    y_pred=grid_obj.predict(X_test)
+    acc_score=accuracy_score(y_test,y_pred)
+    #print(grid_obj.best_score_)
+    return acc_score.item(),bestParam
 
 
-
+# accuracy, best_params =myXGBoost(X_train, X_test, y_train, y_test,model,param_grid1,Kfold=3)
+# print(type(accuracy))
+# print(type(best_params))
+# print(best_params)
+# print(accuracy)
