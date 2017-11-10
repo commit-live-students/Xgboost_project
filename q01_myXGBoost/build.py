@@ -22,7 +22,7 @@ param_grid1 = {"max_depth": [2, 3, 4, 5, 6, 7, 9, 11],
 
 # Write your solution here :
 
-def myXGBoost(X_train, X_test, y_train, y_test,model,param_grid,Kfold=3):
+def myXGBoost(X_train, X_test, y_train, y_test,model,param_grid,Kfold=3,**kwargs):
     #acc_scorer = make_scorer(accuracy_score)
     grid_obj = GridSearchCV(model, param_grid1,cv=Kfold)
     grid_obj.fit(X_train,y_train)
