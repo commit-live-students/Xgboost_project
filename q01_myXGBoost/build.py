@@ -10,6 +10,7 @@ dataset = pd.read_csv('data/loan_clean_data.csv')
 X = dataset.iloc[:, :-1]
 y = dataset.iloc[:, -1]
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=9)
+model = XGBClassifier(seed=9)
 
 param_grid1 = {"max_depth": [2, 3, 4, 5, 6, 7, 9, 11],
                "min_child_weight": [4, 6, 7, 8],
@@ -17,9 +18,10 @@ param_grid1 = {"max_depth": [2, 3, 4, 5, 6, 7, 9, 11],
                "colsample_bytree": [0.6, .7, .8, .9, 1]
                }
 
-
-# Write your solution here :
-
-
-
-
+def myXGBoost(X_train,X_test,y_train,y_test,model,param_grid,KFold=3):
+    clf = GridSearchCV(estimator=model,param_grid=param_grid,cv=3)
+    clf.fit(X_train,y_train)
+    y_pred = clf.predict(X_test)
+    acc = accuracy_score(y_test,y_pred)
+    best_params = clf.best_params_
+    return acc,best_params
