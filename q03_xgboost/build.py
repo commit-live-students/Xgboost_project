@@ -19,7 +19,7 @@ def xgboost(X_train, X_test, y_train, y_test,**kwargs):
     #ac,bst=myXGBoost(X_train, X_test, y_train, y_test,model,param_grid1,KFold=3)
     #h,j=param2(X_train, X_test, y_train, y_test,model,param_grid2)
     #return h,j
-    print model
+    #print model
     model.fit(X_train,y_train)
     d=model.predict(X_test)
     a=accuracy_score(y_test,d)
