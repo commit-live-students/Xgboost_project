@@ -1,3 +1,4 @@
+# %load q01_myXGBoost/build.py
 import pandas as pd
 from xgboost import XGBClassifier
 from sklearn.model_selection import train_test_split
@@ -17,9 +18,10 @@ param_grid1 = {"max_depth": [2, 3, 4, 5, 6, 7, 9, 11],
                "colsample_bytree": [0.6, .7, .8, .9, 1]
                }
 
-
+model=XGBClassifier(seed=9)
+def myXGBoost(X_train,X_test,y_train,y_test,model,param_grid1,kFold=3):
+    gs=GridSearchCV(model,param_grid1,cv=kFold)
+    gs.fit(X_train,y_train)
+    y_pred=gs.predict(X_test)
+    return accuracy_score(y_test,y_pred),gs.best_params_
 # Write your solution here :
-
-
-
-
