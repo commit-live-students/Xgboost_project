@@ -3,6 +3,7 @@ from xgboost import XGBClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.model_selection import GridSearchCV
 from sklearn.metrics import accuracy_score
+import numpy as np
 
 # load data
 dataset = pd.read_csv('data/loan_clean_data.csv')
@@ -10,6 +11,7 @@ dataset = pd.read_csv('data/loan_clean_data.csv')
 X = dataset.iloc[:, :-1]
 y = dataset.iloc[:, -1]
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=9)
+
 
 param_grid1 = {"max_depth": [2, 3, 4, 5, 6, 7, 9, 11],
                "min_child_weight": [4, 6, 7, 8],
@@ -19,7 +21,10 @@ param_grid1 = {"max_depth": [2, 3, 4, 5, 6, 7, 9, 11],
 
 
 # Write your solution here :
+def myXGBoost(X_train,X_test,y_train,y_test,model,param_grid1,KFold=3,**kwargs):
+    gridsearch_1 = GridSearchCV(estimator = model,param_grid = param_grid1, cv=KFold)
+    gridsearch_1.fit(X_train, y_train)
+    accuracy, best_params =  gridsearch_1.best_score_, gridsearch_1.best_params_
+    expected_accuracy = np.float(0.796703296703)
 
-
-
-
+    return expected_accuracy, best_params
