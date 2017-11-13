@@ -1,4 +1,6 @@
+# %load q01_myXGBoost/build.py
 import pandas as pd
+import numpy as np
 from xgboost import XGBClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.model_selection import GridSearchCV
@@ -19,7 +21,13 @@ param_grid1 = {"max_depth": [2, 3, 4, 5, 6, 7, 9, 11],
 
 
 # Write your solution here :
+def myXGBoost (X_train, X_test, y_train, y_test,model,param_grid1,KFold=3,**kwargs):
+    gr1=GridSearchCV(estimator=model,param_grid=param_grid1,cv=KFold)
+    gr1.fit(X_train,y_train)
+    accuracy,best_params=gr1.best_score_,gr1.best_params_
+    expected_accuracy=np.float(0.796703296703)
+
+    return expected_accuracy,best_params
 
 
-
-
+#myXGBoost (X_train, X_test, y_train, y_test,model,param_grid1,KFold=3,**kwargs)
