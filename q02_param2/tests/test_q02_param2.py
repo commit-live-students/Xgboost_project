@@ -2,7 +2,7 @@ from unittest import TestCase
 from sklearn.model_selection import train_test_split
 from xgboost import XGBClassifier
 import pandas as pd
-from inspect import getargspec
+from inspect import getfullargspec
 from ..build import param2
 
 # load data
@@ -22,9 +22,10 @@ class TestParam2(TestCase):
     def test_param2(self):
 
         # Input parameters tests
-        args = getargspec(param2)
-        self.assertEqual(len(args[0]), 6, "Expected argument(s) %d, Given %d" % (6, len(args[0])))
-        self.assertEqual(args[3], None, "Expected default values do not match given default values")
+		args = getfullargspec(param2).args
+        args_default = getfullargspec(param2).defaults
+        self.assertEqual(len(args), 6, "Expected arguments %d, Given %d" % (6, len(args)))
+        self.assertEqual(args_default, None, "Expected default values do not match given default values")
 
         # Return data types
 

@@ -1,1 +1,1 @@
-{ "notebook": { "folder": "Xgboost_project" , "q01_myXGBoost": "q01_myXGBoost.ipynb", "q02_param2": "q02_param2.ipynb","q03_xgboost": "q03_xgboost.ipynb"}}
+{ "notebook": { "folder": "Xgboost_project" , "q01_myXGBoost": "q01_myXGBoost.ipynb", "q01_myXGBoost.ipynb": "q01_myXGBoost.ipynb.ipynb", "q02_param2": "q02_param2.ipynb", "q02_param2.ipynb": "q02_param2.ipynb.ipynb", "q03_xgboost": "q03_xgboost.ipynb", "q03_xgboost.ipynb": "q03_xgboost.ipynb.ipynb"} }

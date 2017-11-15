@@ -1,5 +1,5 @@
 from unittest import TestCase
-from inspect import getargspec
+from inspect import getfullargspec
 from ..build import myXGBoost
 from xgboost import XGBClassifier
 from sklearn.model_selection import train_test_split
@@ -20,10 +20,11 @@ param_grid1 = {"max_depth": [2, 3, 4, 5, 6, 7, 9, 11],
 class TestMyXGBoost(TestCase):
     def test_myXGBoost(self):
 
-        # Input parameters tests
-        args = getargspec(myXGBoost)
-        self.assertEqual(len(args[0]), 7, "Expected argument(s) %d, Given %d" % (7, len(args[0])))
-        self.assertEqual(args[3], (3,), "Expected default values do not match given default values")
+        # Input parameters tests		
+		args = getfullargspec(myXGBoost).args
+        args_default = getfullargspec(myXGBoost).defaults
+        self.assertEqual(len(args), 7, "Expected arguments %d, Given %d" % (7, len(args)))
+        self.assertEqual(args_default,(3,), "Expected default values do not match given default values")
 
         # Return data types
 

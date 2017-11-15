@@ -1,7 +1,7 @@
 from unittest import TestCase
 from sklearn.model_selection import train_test_split
 from ..build import xgboost
-from inspect import getargspec
+from inspect import getfullargspec
 import pandas as pd
 
 # load data
@@ -16,10 +16,12 @@ class TestXgboost(TestCase):
     def test_xgboost(self):
 
         # Input parameters tests
-        args = getargspec(xgboost)
-        self.assertEqual(len(args[0]), 4, "Expected argument(s) %d, Given %d" % (4, len(args[0])))
-        self.assertEqual(args[3], None, "Expected default values do not match given default values")
+        args = getfullargspec(xgboost).args
+        args_default = getfullargspec(xgboost).defaults
+        self.assertEqual(len(args), 4, "Expected arguments %d, Given %d" % (4, len(args)))
+        self.assertEqual(args_default, None, "Expected default values do not match given default values")
 
+		
         # Return data types
 
         accuracy = xgboost(X_train, X_test, y_train, y_test,subsample=0.8,
