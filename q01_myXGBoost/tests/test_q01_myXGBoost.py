@@ -17,30 +17,39 @@ param_grid1 = {"max_depth": [2, 3, 4, 5, 6, 7, 9, 11],
                }
 
 
+xgb = XGBClassifier(seed=9)
+accuracy, best_params = myXGBoost(X_train, X_test, y_train, y_test, xgb, param_grid1, 3)
+expected_best_params = {'subsample': 0.8, 'colsample_bytree': 0.7, 'max_depth': 2, 'min_child_weight': 4}
+expected_accuracy = 0.796703296703
+
+
+
 class TestMyXGBoost(TestCase):
-    def test_myXGBoost(self):
+    def test_myXGBoost_args(self):
 
         # Input parameters tests
         args = getargspec(myXGBoost)
         self.assertEqual(len(args[0]), 7, "Expected argument(s) %d, Given %d" % (7, len(args[0])))
+	
+    def test_myXGBoost_default(self):
+        args = getargspec(myXGBoost)
         self.assertEqual(args[3], (3,), "Expected default values do not match given default values")
 
         # Return data types
-
-        xgb = XGBClassifier(seed=9)
-        accuracy, best_params = myXGBoost(X_train, X_test, y_train, y_test, xgb, param_grid1, 3)
-
+    def test_accuracy_type(self):
         self.assertIsInstance(accuracy, float,
                               "Expected data type for return value is `list`, you are returning %s" % (
                                   type(accuracy)))
-
+    def test_best_params_type(self):
         self.assertIsInstance(best_params, dict,
                               "Expected data type for return value is `numpy.ndarray`, you are returning %s" % (
                                   type(best_params)))
 
         # Return value tests
-        expected_best_params = {'subsample': 0.8, 'colsample_bytree': 0.7, 'max_depth': 2, 'min_child_weight': 4}
-        expected_accuracy = 0.796703296703
-
+    def test_Dict_values(self):
         self.assertDictEqual(best_params, expected_best_params, "Expected best_params does not match given best_params")
+
+    def test_accuracy_values(self):
         self.assertAlmostEqual(accuracy, expected_accuracy, 4, "Expected accuracy does not match given accuracy")
+
+

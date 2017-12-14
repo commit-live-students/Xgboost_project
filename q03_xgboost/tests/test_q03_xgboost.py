@@ -12,26 +12,31 @@ y = dataset.iloc[:, -1]
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=9)
 
 
+accuracy = xgboost(X_train, X_test, y_train, y_test,subsample=0.8,
+      colsample_bytree=0.7, max_depth=2, 
+      min_child_weight=4, reg_alpha=0, reg_lambda=1.0,
+     gamma=0,n_estimators=100,learning_rate=0.1)
+
+expected_accuracy = 0.79670329670329665
+
 class TestXgboost(TestCase):
-    def test_xgboost(self):
+    def test_xgboost_args(self):
 
         # Input parameters tests
         args = getargspec(xgboost)
         self.assertEqual(len(args[0]), 4, "Expected argument(s) %d, Given %d" % (4, len(args[0])))
+
+    def test_xgboost_default(self):
+        args = getargspec(xgboost)
         self.assertEqual(args[3], None, "Expected default values do not match given default values")
 
         # Return data types
-
-        accuracy = xgboost(X_train, X_test, y_train, y_test,subsample=0.8,
-              colsample_bytree=0.7, max_depth=2, 
-              min_child_weight=4, reg_alpha=0, reg_lambda=1.0,
-             gamma=0,n_estimators=100,learning_rate=0.1)
-
+    def test_accuracy_type(self):
         self.assertIsInstance(accuracy, float,
                               "Expected data type for return value is `list`, you are returning %s" % (
                                   type(accuracy)))
 
         # Return value tests
-        expected_accuracy = 0.79670329670329665
+    def test_accuracy_values(self): 
         self.assertAlmostEqual(accuracy, expected_accuracy, 3, "Expected accuracy does not match given accuracy")
 

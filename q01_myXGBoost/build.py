@@ -21,5 +21,3 @@ param_grid1 = {"max_depth": [2, 3, 4, 5, 6, 7, 9, 11],
 # Write your solution here :
 
 
-
-
