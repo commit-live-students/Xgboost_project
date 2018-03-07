@@ -18,4 +18,3 @@ param_grid2 = {"gamma": [0, 0.05, 0.1, 0.3, 0.7, 0.9, 1],
 
 
 # Write your solution here :
-
