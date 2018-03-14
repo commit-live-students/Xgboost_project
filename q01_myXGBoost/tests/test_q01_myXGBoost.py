@@ -1,5 +1,5 @@
 from unittest import TestCase
-from inspect import getargspec
+from inspect import getfullargspec
 from ..build import myXGBoost
 from xgboost import XGBClassifier
 from sklearn.model_selection import train_test_split
@@ -28,11 +28,11 @@ class TestMyXGBoost(TestCase):
     def test_myXGBoost_args(self):
 
         # Input parameters tests
-        args = getargspec(myXGBoost)
+        args = getfullargspec(myXGBoost)
         self.assertEqual(len(args[0]), 7, "Expected argument(s) %d, Given %d" % (7, len(args[0])))
 	
     def test_myXGBoost_default(self):
-        args = getargspec(myXGBoost)
+        args = getfullargspec(myXGBoost)
         self.assertEqual(args[3], (3,), "Expected default values do not match given default values")
 
         # Return data types
