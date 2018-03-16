@@ -18,6 +18,15 @@ param_grid1 = {"max_depth": [2, 3, 4, 5, 6, 7, 9, 11],
                }
 
 
-# Write your solution here :
+def myXGBoost(X_train, X_test, y_train, y_test, model, param_grid, Kfold=3, **kwargs):
+    gs_cv = GridSearchCV(estimator = model, param_grid= param_grid1, cv = Kfold)
+    gs_cv.fit(X_train, y_train)
 
+    # make predictions for test data
+    y_pred = gs_cv.predict(X_test)
+    predictions = [round(value) for value in y_pred]
 
+    accuracy = accuracy_score(y_test, predictions)
+    #print("Accuracy: %.2f%%" % (accuracy * 100.0))
+
+    return accuracy, gs_cv.best_params_
