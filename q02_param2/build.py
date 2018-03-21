@@ -17,4 +17,7 @@ param_grid2 = {"gamma": [0, 0.05, 0.1, 0.3, 0.7, 0.9, 1],
                }
 
 
-# Write your solution here :
+def param2(X_train, X_test, y_train, y_test, xgb, param_grid, **kwargs):
+    #Include parameters used for earlier call as well.
+    accuracy, best_params_ = myXGBoost(X_train, X_test, y_train, y_test, xgb, param_grid, colsample_bytree=0.7, subsample=0.8, max_depth=2, min_child_weight=4)
+    return accuracy, best_params_
