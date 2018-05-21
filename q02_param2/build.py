@@ -16,5 +16,11 @@ param_grid2 = {"gamma": [0, 0.05, 0.1, 0.3, 0.7, 0.9, 1],
                "reg_lambda": [0.05, 0.1, 0.5, 1.0]
                }
 
-
+xgb = XGBClassifier(seed=9)
 # Write your solution here :
+def param2(X_train,X_test,y_train,y_test,model,param_grid):
+    kwargs = {'subsample': 0.8, 'colsample_bytree': 0.7, 'max_depth': 2, 'min_child_weight': 4}
+    acc, best_params = myXGBoost(X_train,X_test,y_train,y_test,model,param_grid,**kwargs)
+    return acc, best_params
+
+#param2(X_train,X_test,y_train,y_test,xgb,param_grid2)
