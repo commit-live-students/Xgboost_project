@@ -21,7 +21,7 @@ xgb = XGBClassifier(seed=9)
 # Write your solution here :
 def myXGBoost(X_train,X_test,y_train,y_test,model,param_grid,Kfold=3,**kwargs):
     if kwargs is not None:
-        new_model = model(kwargs)
+        new_model = model(**kwargs)
 
     search = GridSearchCV(estimator=new_model,param_grid=param_grid,cv=Kfold)
     search.fit(X_train,y_train)
