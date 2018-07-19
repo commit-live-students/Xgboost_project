@@ -14,7 +14,7 @@
 | y_train | Series/DataFrame | compulsory | | Training dataset target Variable |
 | y_test | Series/DataFrame | compulsory | | Testing dataset target Variable |
 | model | int | compulsory | | Which model needs to be build |
-| param_grid | Dict | compulsory | | Dictionary of parameter |
+| param_grid2 | Dict | compulsory | | Dictionary of parameter |
 
 ### Return :
 
