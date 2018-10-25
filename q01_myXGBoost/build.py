@@ -19,5 +19,12 @@ param_grid1 = {"max_depth": [2, 3, 4, 5, 6, 7, 9, 11],
 
 
 # Write your solution here :
+def myXGBoost (X_train,X_test, y_train,y_test, model,param_grid,KFold =3, **kwargs ):
+    clf = GridSearchCV(model, param_grid, cv= KFold, **kwargs)
+    clf.fit(X_train, y_train)
+    return accuracy_score(y_test,clf.predict(X_test)), clf.best_params_
 
+accuracy, best_params = myXGBoost(X_train, X_test, y_train, y_test, XGBClassifier(seed=9), param_grid1, 3)
 
+print (accuracy)
+print (best_params)
