@@ -1,3 +1,4 @@
+# %load q03_xgboost/build.py
 # Default imports
 from sklearn.model_selection import train_test_split
 from xgboost import XGBClassifier
@@ -13,5 +14,15 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random
 
 
 # Write your solution here :
+
+def xgboost(X_train, X_test, y_train, y_test, **kwargs):
+    model = XGBClassifier(random_state=9)
+    model.set_params(**kwargs)
+    model.fit(X_train,y_train)
+    y_pred = model.predict(X_test)
+    accuracy = accuracy_score(y_test,y_pred)
+    return accuracy
+
+
 
 
